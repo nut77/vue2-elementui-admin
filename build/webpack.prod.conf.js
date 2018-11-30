@@ -89,7 +89,7 @@ const webpackConfig = merge(baseWebpackConfig, {
           module.resource.indexOf(
             path.join(__dirname, '../node_modules')
           ) === 0
-        )
+        )  
       }
     }),
     // extract webpack runtime and module manifest to its own file in order to

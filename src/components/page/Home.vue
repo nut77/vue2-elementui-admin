@@ -4,7 +4,7 @@
     <!--用户卡片-->
     <div class="stat-user">
       <div class="stat-user__title">
-        后台管理系统模板
+        海量邮件数据综合分析系统
       </div>
       <div class="stat-user__detail">
         <p>欢迎您，{{username}}</p>
@@ -30,29 +30,52 @@
     </div>
   </div>
   <el-row :gutter="20" class="margin-t-20 list">
-    <!--待办事项-->
-    <el-col :span="12">
-      <el-card>
-        <div slot="header">
-          <span><i class="el-icon-tickets margin-r-5"></i>待办事项</span>
-          <i class="el-icon-plus" @click="addNewTodoItem" title="新增"></i>
-        </div>
-        <p v-for="(item ,i) in todoList" :key="i">
-          <el-checkbox v-model="item.isChecked"></el-checkbox>
-          <span :class="{active: item.isChecked}">{{i + 1 > 9 ? i + 1 : '0' + (i + 1)}}-{{item.title}}</span>
-        </p>
-      </el-card>
-    </el-col>
     <!--最新消息-->
-    <el-col :span="12">
+    <el-col :span="24">
       <el-card>
         <div slot="header">
-          <span><i class="el-icon-news margin-r-5"></i>最新消息</span>
+          <span><i class="el-icon-news margin-r-5"></i>最新报警</span>
         </div>
-        <p v-for="(item ,i) in latestNewList" :key="i">
-          <span class="latest-new-list__time"><i class="el-icon-time margin-r-5"></i>{{item.time}}：</span>
-          <span>{{item.title}}</span>
-        </p>
+        <el-table
+          :data="tableData"
+          style="width: 100%"
+          border
+          stripe>
+          <el-table-column
+            type="index"
+            label="序号"
+            width="50">
+          </el-table-column>
+          <el-table-column
+            prop="date"
+            label="发件时间"
+            width="200">
+            <template slot-scope="scope">
+              <i class="el-icon-time"></i>
+              <span style="margin-left: 10px">{{scope.row.date}}</span>
+            </template>
+          </el-table-column>
+          <el-table-column
+            prop="from"
+            label="发件人">
+          </el-table-column>
+          <el-table-column
+            prop="to"
+            label="收件人">
+          </el-table-column>
+          <el-table-column
+            prop="project"
+            label="邮件主题">
+          </el-table-column>
+          <el-table-column
+            prop="attachment"
+            label="附件">
+          </el-table-column>
+          <el-table-column
+            prop="description"
+            label="报警描述">
+          </el-table-column>
+        </el-table>
       </el-card>
     </el-col>
   </el-row>
@@ -61,18 +84,6 @@
 
 <script>
   import Util from '@/assets/js/util';
-  let todoList = [], latestNewList = [];
-  for (let i = 0; i < 10; i++) {
-
-    todoList.push({
-      title: `今天需要做的待办事项咯~~~`,
-      isChecked: false
-    });
-    latestNewList.push({
-      time: new Date(new Date().getTime()  + i * 24 * 3600 * 1000).Format('yyyy-MM-dd'),
-      title: `今日的最新新闻来咯~~~`
-    });
-  }
   export default {
     name: "Home",
     data() {
@@ -80,49 +91,48 @@
         stat: [
           [
             {
+              icon: 'el-icon-star-off',
+              title: '总报警数（次）',
+              total: 5,
+              bgColor: '#67c4ed'
+            },
+            {
               icon: 'el-icon-service',
-              title: '公司总员工数',
-              total: 198397,
+              title: '总收件人数（个）',
+              total: 2,
               bgColor: '#ebcc6f'
             },
             {
               icon: 'el-icon-location-outline',
-              title: '客户分布区域',
-              total: 19,
+              title: '总发件人数（个）',
+              total: 2,
               bgColor: '#3acaa9'
-            },
-            {
-              icon: 'el-icon-star-off',
-              title: '收货好评',
-              total: 190857,
-              bgColor: '#67c4ed'
             }
           ],
           [
             {
+              icon: 'el-icon-goods',
+              title: '最新报警数（次）',
+              total: 5,
+              bgColor: '#ebcc6f'
+            },
+            {
               icon: 'el-icon-edit-outline',
-              title: '历史订单数',
-              total: 9397,
+              title: '收件人分布区域（个）',
+              total: 2,
               bgColor: '#af84cb'
             },
             {
               icon: 'el-icon-share',
-              title: '产品总转发数量',
-              total: 9097,
+              title: '发件人分布区域（个）',
+              total: 2,
               bgColor: '#67c4ed'
-            },
-            {
-              icon: 'el-icon-goods',
-              title: '产品总数',
-              total: 397,
-              bgColor: '#ebcc6f'
             }
           ]
         ],
-        username: localStorage.getItem('username'),
+        username: sessionStorage.getItem('username'),
         nowTime: new Date().Format('yyyy-MM-dd hh:mm:ss'),
-        todoList,
-        latestNewList
+        tableData: []
       }
     },
     methods: {
@@ -133,32 +143,17 @@
           this.nowTime = new Date().Format('yyyy-MM-dd hh:mm:ss')
         }, 1000);
       },
-      addNewTodoItem() {
+      getTableData() {
 
-        this.$prompt('请输入待办事项主题', '', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消'
-        }).then(({value}) => {
+        this.$axios.get('/table').then(res => {
 
-          this.$message({
-            type: 'success',
-            message: '新增待办事项成功'
-          });
-          this.todoList.unshift({
-            title: value,
-            isChecked: false
-          });
-        }).catch(() => {
-
-          this.$message({
-            type: 'info',
-            message: '取消新增待办事项'
-          });
+          this.tableData = res.data;
         });
       }
     },
     mounted() {
       this.setNowTime();
+      this.getTableData();
     }
   }
 </script>
@@ -275,6 +270,9 @@
   }
   .latest-new-list__time {
     color: #666;
+    font-size: 14px;
+  }
+  .el-table {
     font-size: 14px;
   }
 </style>

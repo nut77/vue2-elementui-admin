@@ -5,15 +5,13 @@
       <i class="el-icon-menu"></i>
     </span>
     <!-- 系统标题 -->
-    <h3 class="header-title margin-l-10">后台管理系统模板</h3>
+    <h3 class="header-title margin-l-10">邮件分析系统</h3>
     <div class="header-right">
       <!-- 消息中心 -->
       <div class="btn-info">
         <el-tooltip placement="bottom">
-          <span slot="content">{{message ? `有${message}条消息` : '消息中心'}}</span>
-          <router-link to="/info">
-            <i class="el-icon-bell"></i>
-          </router-link>
+          <span slot="content">{{message ? `有${message}条最新报警` : '消息中心'}}</span>
+          <i class="el-icon-bell"></i>
         </el-tooltip>
         <span class="btn-info-tip" v-if="message"></span>
       </div>
@@ -26,10 +24,7 @@
           <i class="el-icon-caret-bottom"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
-          <a href="https://github.com/nut77/vue2-elemntui-admin" target="_blank">
-            <el-dropdown-item>项目仓库</el-dropdown-item>
-          </a>
-          <el-dropdown-item divided command="loginout">退出登录</el-dropdown-item>
+          <el-dropdown-item command="loginout">退出登录</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -42,8 +37,8 @@
     name: "Header",
     data() {
       return {
-        message: 1,
-        username: localStorage.getItem('username'),
+        message: 5,
+        username: sessionStorage.getItem('username'),
         collapse: false
       }
     },
@@ -60,7 +55,7 @@
 
         if ('loginout' == command) {
 
-          localStorage.removeItem('username');
+          sessionStorage.removeItem('username');
           this.$router.push('/login');
         }
       }

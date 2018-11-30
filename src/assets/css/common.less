@@ -1,7 +1,6 @@
 // 一些可以用来通用的样式
 
 @import "reset";
-@import "variable";
 // 相关参数
 @bold-color: #cafaff;
 @normal-color: #abdef9;
@@ -41,9 +40,6 @@
 }
 .margin-r-10 {
   margin-right: 10px;
-}
-.txt-center {
-  text-align: center;
 }
 
 // 边框线相关
@@ -121,30 +117,7 @@
   }
 }
 
-// 重置elment-ui相关样式
-.el-pagination {
-  float: right;
-  margin-bottom: 20px;
-  .el-input__inner {
-    border-color: @mainColor !important;
-  }
-  .btn-prev, .btn-next {
-    background-color: transparent !important;
-  }
-}
-.el-pager .number,
-.el-pager .el-icon{
-  min-width: auto;
-  padding: 0 8px;
-  margin-right: 10px;
-  background-color: transparent;
-  color: #666;
-  &.active {
-    border-radius: 5px;
-    background-color: @mainColor;
-    color: white;
-  }
-}
-.el-pager .number:last-child {
-  margin-right: 0;
+// 表格样式
+.el-table {
+  font-size: 14px;
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="login-wrapper">
     <div class="login-main">
-      <h3 class="login-title">后台管理系统模板</h3>
+      <h3 class="login-title">邮件分析系统</h3>
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm">
         <el-form-item prop="username">
           <el-input v-model="ruleForm.username" placeholder="用户名"></el-input>
@@ -11,7 +11,6 @@
         </el-form-item>
         <el-form-item>
           <el-button class="login-btn" type="primary" @click="submitForm('ruleForm')">登录</el-button>
-          <p class="login-tip">提示：用户名和密可以随便填。</p>
         </el-form-item>
       </el-form>
     </div>
@@ -26,7 +25,7 @@
       return {
         ruleForm: {
           username: 'admin',
-          password: '123123'
+          password: ''
         },
         rules: {
           username: [
@@ -41,14 +40,21 @@
     methods: {
       submitForm(formName) {
 
-        this.$refs[formName].validate(valid => {
+        let _this = this;
+        _this.$refs[formName].validate(valid => {
 
           if (!valid) {
 
-            this.$message.error('登录表单字段输入格式有误');
+            this.$message.error('输入格式有误');
             return false;
           }
-          localStorage.setItem('username', this.ruleForm.username);
+          if ('admin' != _this.ruleForm.username || 'Admin2018' != _this.ruleForm.password) {
+
+            this.$message.error('用户名或密码输入有误');
+            return false;
+          }
+
+          sessionStorage.setItem('username', _this.ruleForm.username);
           this.$router.push('/');
         });
       }
@@ -60,7 +66,6 @@
       let ctx = canvas.getContext('2d');
       canvas.width = canvas.parentNode.offsetWidth;
       canvas.height = canvas.parentNode.offsetHeight;
-      console.log(canvas.width, canvas.height);
 
       // 如果浏览器支持requestAnimFrame则使用requestAnimFrame否则使用setTimeout
       window.requestAnimFrame = (function () {
@@ -124,7 +129,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 320px;
+    width: 330px;
     height: 370px;
     padding: 20px 35px;
     border: 1px solid #eee;

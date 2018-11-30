@@ -11,7 +11,7 @@ import echarts from 'echarts';
 require('./mock');
 
 Vue.config.productionTip = false;
-Vue.use(ElementUI, {size: 'medium'});
+Vue.use(ElementUI, {size: 'small'});
 Vue.prototype.$axios = axios; // axios不能使用use
 Vue.prototype.$echarts = echarts;
 
@@ -25,7 +25,7 @@ router.beforeEach((to, from, next) => {
     return false;
   }
 
-  const role = localStorage.getItem('username');
+  const role = sessionStorage.getItem('username');
   if (!role && to.path !== '/login') {
 
     next('/login');
@@ -51,6 +51,6 @@ router.beforeEach((to, from, next) => {
 new Vue({
   el: '#app',
   router,
-  components: {App},
-  template: '<App/>'
+  components: { App },
+  template: '<App/>' 
 });

@@ -72,3 +72,49 @@ Mock.mock('/chart-complex/line2', 'get', {
     'month|+1': 5
   }]
 });
+
+// 报警中心和首页最新报警的数据
+Mock.mock('/table', 'get', () => {
+  return [
+    {
+      date: '2018-11-13 14:00:03',
+      from: 'www1988@163.com',
+      to: 'wuli995@163.com',
+      project: '学习资料',
+      attachment: 'zl4.zip',
+      description: 'Win.Worm.Mydoom-90'
+    },
+    {
+      date: '2018-11-13 13:34:03',
+      from: 'www1988@163.com',
+      to: 'wuli995@163.com',
+      project: '学习资料',
+      attachment: 'zl3.zip',
+      description: 'Win.Worm.Mydoom-90'
+    },
+    {
+      date: '2018-11-13 13:16:43',
+      from: 'www1988@163.com',
+      to: 'wuli995@163.com',
+      project: '学习资料',
+      attachment: 'zl2.zip',
+      description: 'Win.Worm.Mydoom-90'
+    },
+    {
+      date: '2018-11-13 13:01:23',
+      from: 'www1988@163.com',
+      to: 'wuli995@163.com',
+      project: '学习资料',
+      attachment: 'zl1.zip',
+      description: 'Win.Worm.Mydoom-90'
+    },
+    {
+      date: '2018-11-12 10:31:47',
+      from: 'alexwe@boegn.org',
+      to: 'houl@wpu.edu.cn',
+      project: 'Cyjyi fj',
+      attachment: 'message.exe',
+      description: 'Win.Worm.Mydoom-90'
+    }
+  ];
+});

@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper">
+    <com-header></com-header>
     <div class="main">
       <el-button class="btn btn-return J-page-return" @click="goBack">上一页</el-button>
       <router-link to="/">
@@ -10,8 +11,10 @@
 </template>
 
 <script>
+  import comHeader from '../common/Header.vue';
   export default {
     name: "Error",
+    components: {comHeader},
     methods: {
       goBack() {
         this.$router.go(-1);
@@ -22,7 +25,6 @@
 
 <style scoped lang="less">
   .wrapper {
-    position: relative;
     height: 100%;
     background-color: #eee;
   }
@@ -30,8 +32,8 @@
     position: relative;
     top: 50%;
     height: 300px;
+    margin-top: -150px;
     background: url(../../assets/img/error-page.png) center center no-repeat;
-    transform: translateY(-50%);
   }
   .btn {
     position: absolute;
