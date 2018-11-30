@@ -4,7 +4,7 @@
     <!--用户卡片-->
     <div class="stat-user">
       <div class="stat-user__title">
-        海量邮件数据综合分析系统
+        邮件分析系统
       </div>
       <div class="stat-user__detail">
         <p>欢迎您，{{username}}</p>
