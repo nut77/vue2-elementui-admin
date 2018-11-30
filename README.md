@@ -1,21 +1,21 @@
-# vue2-elementui-admin
+# 前言
+**vue2-elementui-admin**项目是基于vue全家桶和elementui完成的PC端后台管理系统模板，完成的一个简易的邮件分析系统。
+# 技术栈
+less es6 vue2 vuex vue-router element-ui webpack
+# 项目运行
+**注意：项目是基于nodejs运行，需要提前安装好nodejs环境。**
 
-> A Vue.js project
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+git clone 项目地址
+cd vue2-elementui-admin
+npm install
+run dev
+```
+然后访问```localhost:8080```即可进入欢迎页面，点击开始测试按钮即可开始菲尔人格测验。
+# 部分截图
+![img1](https://github.com/nut77/vue2-elementui-admin/blob/v1.0.0/screenshots/1.png)
+![img2](https://github.com/nut77/vue2-elementui-admin/blob/v1.0.0/screenshots/2.png)
+![img3](https://github.com/nut77/vue2-elementui-admin/blob/v1.0.0/screenshots/3.png)
+![img4](https://github.com/nut77/vue2-elementui-admin/blob/v1.0.0/screenshots/4.png)
+![img5](https://github.com/nut77/vue2-elementui-admin/blob/v1.0.0/screenshots/5.png)
+![img6](https://github.com/nut77/vue2-elementui-admin/blob/v1.0.0/screenshots/6.png)
