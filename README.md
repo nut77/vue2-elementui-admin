@@ -15,6 +15,7 @@ run dev
 # 部分截图
 #### 登录
 ![img1](https://github.com/nut77/vue2-elementui-admin/blob/1.0.0/screenshots/1.png)
+用户名：admin  密码：Admin2018
 #### 首页
 ![img2](https://github.com/nut77/vue2-elementui-admin/blob/1.0.0/screenshots/2.png)
 
