@@ -80,9 +80,6 @@ textarea:-ms-input-placeholder {
 .margin-r-10 {
   margin-right: 10px;
 }
-.txt-center {
-  text-align: center;
-}
 .border-linear {
   border-image: -webkit-linear-gradient(to right, rgba(0, 147, 240, 0) 0%, #0093f0 50%, rgba(0, 147, 240, 0) 100%) 1 1;
   border-image: -moz-linear-gradient(to right, rgba(0, 147, 240, 0) 0%, #0093f0 50%, rgba(0, 147, 240, 0) 100%) 1 1;
@@ -148,33 +145,5 @@ textarea:-ms-input-placeholder {
 .input-field[disabled] {
   background-color: #4f697e;
   cursor: not-allowed;
-}
-.el-pagination {
-  float: right;
-  margin-bottom: 20px;
-}
-.el-pagination .el-input__inner {
-  border-color: #459f75 !important;
-}
-.el-pagination .btn-prev,
-.el-pagination .btn-next {
-  background-color: transparent !important;
-}
-.el-pager .number,
-.el-pager .el-icon {
-  min-width: auto;
-  padding: 0 8px;
-  margin-right: 10px;
-  background-color: transparent;
-  color: #666;
-}
-.el-pager .number.active,
-.el-pager .el-icon.active {
-  border-radius: 5px;
-  background-color: #459f75;
-  color: white;
-}
-.el-pager .number:last-child {
-  margin-right: 0;
 }
 /*# sourceMappingURL=common.css.map */

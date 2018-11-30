@@ -29,7 +29,7 @@
         tagList: [],
         collapse: false,
         initTag: {
-          title: "系统首页",
+          title: "首页",
           path: '/index',
           name: 'Home'
         }

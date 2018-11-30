@@ -4,6 +4,7 @@ import Router from 'vue-router'
 Vue.use(Router);
 
 export default new Router({
+  mode: 'hash',
   routes: [
     {
       path: '/',
@@ -20,35 +21,21 @@ export default new Router({
           path: '/index',
           component: () => import('../components/page/Home.vue'),
           meta: {
-            title: '系统首页'
+            title: '首页'
           }
         },
         {
-          path: '/chart-simple',
-          component: () => import('../components/page/EchartsSimple.vue'),
+          path: '/statistics',
+          component: () => import('../components/page/Statistics.vue'),
           meta: {
-            title: '简单图表'
+            title: '系统统计'
           }
         },
         {
-          path: '/chart-complex',
-          component: () => import('../components/page/EchartsComplex.vue'),
+          path: '/alarmCenter',
+          component: () => import('../components/page/AlarmCenter.vue'),
           meta: {
-            title: '复杂图表'
-          }
-        },
-        {
-          path: '/tab',
-          component: () => import('../components/page/Tab.vue'),
-          meta: {
-            title: 'tab选项卡'
-          }
-        },
-        {
-          path: '/table',
-          component: () => import('../components/page/Table.vue'),
-          meta: {
-            title: '表格'
+            title: '报警中心'
           }
         }
       ]
@@ -60,10 +47,6 @@ export default new Router({
     {
       path: '/error',
       component: () => import('../components/page/Error.vue')
-    },
-    {
-      path: '/404',
-      component: () => import('../components/page/404.vue')
     }
   ]
 })

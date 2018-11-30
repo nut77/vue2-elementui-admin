@@ -33,45 +33,20 @@
         isCollapse: false,
         items: [
           {
-            title: '系统首页',
+            title: '首页',
             path: '/index',
-            icon: 'el-icon-setting'
+            icon: 'el-icon-location-outline'
           },
           {
-            title: 'echarts图表',
-            path: 'echarts',
-            icon: 'el-icon-star-on',
-            subItems: [
-              {
-                title: '简单图表',
-                path: '/chart-simple'
-              },
-              {
-                title: '复杂图表',
-                path: '/chart-complex'
-              }
-            ]
-          },
-          {
-            title: 'tab选项卡',
-            path: '/tab',
-            icon: 'el-icon-message'
-          },
-          {
-            title: '表格',
-            path: '/table',
-            icon: 'el-icon-tickets'
-          },
-          {
-            title: '错误页面',
-            path: '/error',
+            title: '报警中心',
+            path: '/alarmCenter',
             icon: 'el-icon-warning'
           },
           {
-            title: '404页面',
-            path: '/404',
-            icon: 'el-icon-error'
-          },
+            title: '系统统计',
+            path: '/statistics',
+            icon: 'el-icon-star-on'
+          }
         ]
       }
     },
