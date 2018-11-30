@@ -14,15 +14,15 @@ run dev
 然后访问```localhost:8080```即可进入欢迎页面，点击开始测试按钮即可开始菲尔人格测验。
 # 部分截图
 #### 登录
-![img1](https://github.com/nut77/vue2-elementui-admin/blob/1.0.0/screenshots/1.png)
+![img1](https://raw.githubusercontent.com/nut77/vue2-elementui-admin/1.0.0/screenshots/1.png)
 用户名：admin  密码：Admin2018
 #### 首页
-![img2](https://github.com/nut77/vue2-elementui-admin/blob/1.0.0/screenshots/2.png)
+![img2](https://raw.githubusercontent.com/nut77/vue2-elementui-admin/1.0.0/screenshots/2.png)
 
-![img3](https://github.com/nut77/vue2-elementui-admin/blob/1.0.0/screenshots/3.png)
+![img3](https://raw.githubusercontent.com/nut77/vue2-elementui-admin/1.0.0/screenshots/3.png)
 #### 报警中心
-![img4](https://github.com/nut77/vue2-elementui-admin/blob/1.0.0/screenshots/4.png)
+![img4](https://raw.githubusercontent.com/nut77/vue2-elementui-admin/1.0.0/screenshots/4.png)
 #### 系统统计
-![img5](https://github.com/nut77/vue2-elementui-admin/blob/1.0.0/screenshots/5.png)
+![img5](https://raw.githubusercontent.com/nut77/vue2-elementui-admin/1.0.0/screenshots/5.png)
 #### 错误页面
-![img6](https://github.com/nut77/vue2-elementui-admin/blob/1.0.0/screenshots/6.png)
+![img6](https://raw.githubusercontent.com/nut77/vue2-elementui-admin/1.0.0/screenshots/6.png)
