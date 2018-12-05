@@ -40,6 +40,14 @@
         property="address"
         label="地址">
       </el-table-column>
+      <el-table-column
+        label="操作"
+        width="150">
+        <template slot-scope="scope">
+          <el-button circle icon="el-icon-edit-outline" type="primary" title="编辑"></el-button>
+          <el-button circle icon="el-icon-delete" type="danger" title="删除"></el-button>
+        </template>
+      </el-table-column>
     </el-table>
   </div>
 </template>
