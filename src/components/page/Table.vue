@@ -7,14 +7,17 @@
       layout="total, sizes, prev, pager, next, jumper">
     </el-pagination>
     <el-table
+      ref="list"
       :data="tableData"
       style="width: 100%"
       border
       stripe
+      highlight-current-row
       :default-sort="{prop: 'date', order: 'descending'}">
       <el-table-column
         type="selection"
-        width="35">
+        width="45"
+        align="center">
       </el-table-column>
       <el-table-column
         type="index"
@@ -42,10 +45,12 @@
       </el-table-column>
       <el-table-column
         label="操作"
-        width="150">
+        width="130"
+        align="center">
         <template slot-scope="scope">
-          <el-button circle icon="el-icon-edit-outline" type="primary" title="编辑"></el-button>
-          <el-button circle icon="el-icon-delete" type="danger" title="删除"></el-button>
+          <el-button circle icon="el-icon-edit-outline" type="primary" title="编辑" size="small"
+            @click="rowEdit(scope.$index, scope.row)"></el-button>
+          <el-button circle icon="el-icon-delete" type="danger" title="删除" size="small"></el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -74,6 +79,15 @@
           name: '王小虎',
           address: '上海市普陀区金沙江路 1516 弄'
         }]
+      }
+    },
+    methods: {
+      rowEdit(index, rowData) {
+
+        console.log(index);
+        console.log(rowData);
+        this.$refs.list.clearSelection();
+        this.$refs.list.toggleRowSelection(rowData);
       }
     }
   }
