@@ -1,11 +1,13 @@
 <template>
   <div>
+    <!--分页-->
     <el-pagination
       :page-sizes="[10, 20, 30, 40]"
       :page-size="10"
       :total="100"
       layout="total, sizes, prev, pager, next, jumper">
     </el-pagination>
+    <!--表格内容-->
     <el-table
       ref="list"
       :data="tableData"
@@ -13,7 +15,10 @@
       border
       stripe
       highlight-current-row
-      :default-sort="{prop: 'date', order: 'descending'}">
+      :default-sort="{prop: 'date', order: 'descending'}"
+      @row-click="handleRowClick"
+      @select-all="handelCheckedAllAndCheckedNone"
+      @select="handelCheckedAllAndCheckedNone">
       <el-table-column
         type="selection"
         width="45"
@@ -50,10 +55,19 @@
         <template slot-scope="scope">
           <el-button circle icon="el-icon-edit-outline" type="primary" title="编辑" size="small"
             @click="rowEdit(scope.$index, scope.row)"></el-button>
-          <el-button circle icon="el-icon-delete" type="danger" title="删除" size="small"></el-button>
+          <el-button circle icon="el-icon-delete" type="danger" title="删除" size="small"
+            @click="rowDel(scope.$index, scope.row)"></el-button>
         </template>
       </el-table-column>
     </el-table>
+    <!--编辑-弹出层-->
+    <el-dialog
+      title="编辑"
+      :visible.sync="isShowEditDialog"
+      width="500px">
+
+
+    </el-dialog>
   </div>
 </template>
 
@@ -78,16 +92,36 @@
           date: '2016-05-03',
           name: '王小虎',
           address: '上海市普陀区金沙江路 1516 弄'
-        }]
+        }],
+        isShowEditDialog: false
       }
     },
     methods: {
-      rowEdit(index, rowData) {
+      handleRowClick(row, event, column) {
 
+        // 仅选中当前行
+        this.setCurRowChecked(row);
+      },
+      handelCheckedAllAndCheckedNone(selection) {
+
+        // 当前选中仅一行时操作-（当前表格行高亮）
+        console.log(selection);
+        1 != selection.length && this.$refs.list.setCurrentRow();
+      },
+      rowEdit(index, row) {
+
+        // 当前行索引，从0开始
         console.log(index);
-        console.log(rowData);
+
+        this.isShowEditDialog = true;
+        this.setCurRowChecked(row);
+      },
+      rowDel(index, row) {
+      },
+      setCurRowChecked(row) {
+
         this.$refs.list.clearSelection();
-        this.$refs.list.toggleRowSelection(rowData);
+        this.$refs.list.toggleRowSelection(row);
       }
     }
   }
