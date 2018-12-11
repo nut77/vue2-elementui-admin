@@ -17,8 +17,8 @@
       highlight-current-row
       :default-sort="{prop: 'date', order: 'descending'}"
       @row-click="handleRowClick"
-      @select-all="handelCheckedAllAndCheckedNone"
-      @select="handelCheckedAllAndCheckedNone">
+      @select-all="handleCheckedAllAndCheckedNone"
+      @select="handleCheckedAllAndCheckedNone">
       <el-table-column
         type="selection"
         width="45"
@@ -56,7 +56,7 @@
           <el-button circle icon="el-icon-edit-outline" type="primary" title="编辑" size="small"
             @click="rowEdit(scope.$index, scope.row)"></el-button>
           <el-button circle icon="el-icon-delete" type="danger" title="删除" size="small"
-            @click="rowDel(scope.$index, scope.row)"></el-button>
+            @click="rowDel(scope.$index, scope.row, $event);"></el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -64,9 +64,25 @@
     <el-dialog
       title="编辑"
       :visible.sync="isShowEditDialog"
-      width="500px">
-
-
+      width="430px">
+      <el-form ref="editForm"
+        :model="formFileds"
+        label-width="50px"
+        label-position="left">
+        <el-form-item label="日期">
+          <el-date-picker v-model="formFileds.date" value-format="yyyy-MM-dd"></el-date-picker>
+        </el-form-item>
+        <el-form-item label="项目">
+          <el-input v-model="formFileds.name"></el-input>
+        </el-form-item>
+        <el-form-item label="地址">
+          <el-input v-model="formFileds.address"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="handleEdit(formFileds.id)" class="pull-right margin-l-25">确定</el-button>
+          <el-button @click="handleEdit" class="pull-right">取消</el-button>
+        </el-form-item>
+      </el-form>
     </el-dialog>
   </div>
 </template>
@@ -76,19 +92,29 @@
     name: "Table",
     data() {
       return {
+        formFileds: {
+          date: '',
+          name: '',
+          address: '',
+          id: ''
+        },
         tableData: [{
+          id: 0,
           date: '2016-05-02',
           name: '王小虎',
           address: '上海市普陀区金沙江路 1518 弄'
         }, {
+          id: 1,
           date: '2016-05-04',
           name: '王小虎',
           address: '上海市普陀区金沙江路 1517 弄'
         }, {
+          id: 2,
           date: '2016-05-01',
           name: '王小虎',
           address: '上海市普陀区金沙江路 1519 弄'
         }, {
+          id: 3,
           date: '2016-05-03',
           name: '王小虎',
           address: '上海市普陀区金沙江路 1516 弄'
@@ -102,22 +128,51 @@
         // 仅选中当前行
         this.setCurRowChecked(row);
       },
-      handelCheckedAllAndCheckedNone(selection) {
+      handleCheckedAllAndCheckedNone(selection) {
 
         // 当前选中仅一行时操作-（当前表格行高亮）
-        console.log(selection);
         1 != selection.length && this.$refs.list.setCurrentRow();
       },
       rowEdit(index, row) {
 
-        // 当前行索引，从0开始
-        console.log(index);
-
-        this.isShowEditDialog = true;
         this.setCurRowChecked(row);
+
+        // 给编辑弹出层赋值
+        // ***这里需要注意的是：因为加了排序 所以tableData的顺序和实际显示的行顺序不一样
+        for (let key in this.formFileds) {
+
+          this.formFileds[key] = row[key];
+        }
+        this.isShowEditDialog = true;
       },
-      rowDel(index, row) {
+      handleEdit(id) {
+
+        // 保存编辑后的数据
+        Object.assign(this.tableData[id], this.formFileds);
+        this.isShowEditDialog = false;
+
+        // 考虑到可能编辑了日期-需要重新排序
+        // ***注意：手动排序传参和表格的default-sort属性格式不太一样
+        this.$refs.list.sort('date', 'descending');
+
+        this.$message.success('编辑成功');
       },
+      rowDel(index, row, event) {
+
+        // 让当前删除按钮失焦
+        event.target.blur();
+        
+        this.$confirm('确定要删除当前行吗？', '删除', {
+          comfirmButtonText: '确定',
+          cancelButtonText: '取消'
+        }).then(() => {
+
+          this.tableData.splice(row.id, 1);
+          this.$message.success('删除成功');
+          return false;
+        });
+      },
+      // 选中当前行-当前行的复选框被勾选
       setCurRowChecked(row) {
 
         this.$refs.list.clearSelection();
@@ -127,4 +182,11 @@
   }
 </script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.el-form {
+  padding: 0 10px;
+}
+.el-date-editor {
+  width: 100% !important;
+}
+</style>
