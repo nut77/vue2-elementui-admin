@@ -64,23 +64,26 @@
     <el-dialog
       title="编辑"
       :visible.sync="isShowEditDialog"
-      width="430px">
-      <el-form ref="editForm"
+      width="430px"
+      @close="dialogClose">
+      <el-form
+        ref="editForm"
         :model="formFileds"
-        label-width="50px"
-        label-position="left">
+        label-width="55px"
+
+        :rules="rules">
         <el-form-item label="日期">
-          <el-date-picker v-model="formFileds.date" value-format="yyyy-MM-dd"></el-date-picker>
+          <el-date-picker v-model="formFileds.date" value-format="yyyy-MM-dd" :editable="false" :clearable="false"></el-date-picker>
         </el-form-item>
-        <el-form-item label="项目">
+        <el-form-item label="姓名" prop="name">
           <el-input v-model="formFileds.name"></el-input>
         </el-form-item>
-        <el-form-item label="地址">
+        <el-form-item label="地址" prop="address">
           <el-input v-model="formFileds.address"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="handleEdit(formFileds.id)" class="pull-right margin-l-25">确定</el-button>
-          <el-button @click="handleEdit" class="pull-right">取消</el-button>
+          <el-button @click="isShowEditDialog = false;" class="pull-right">取消</el-button>
         </el-form-item>
       </el-form>
     </el-dialog>
@@ -97,6 +100,14 @@
           name: '',
           address: '',
           id: ''
+        },
+        rules: {
+          name: [
+            {required: true, message: '姓名不能为空', trigger: 'blur, change'}
+          ],
+          address: [
+            {required: true, message: '地址不能为空', trigger: 'blur, change'}
+          ]
         },
         tableData: [{
           id: 0,
@@ -133,6 +144,11 @@
         // 当前选中仅一行时操作-（当前表格行高亮）
         1 != selection.length && this.$refs.list.setCurrentRow();
       },
+      dialogClose() {
+
+        // 清空编辑表单
+        this.$refs.editForm.resetFields();
+      },
       rowEdit(index, row) {
 
         this.setCurRowChecked(row);
@@ -147,21 +163,26 @@
       },
       handleEdit(id) {
 
-        // 保存编辑后的数据
-        Object.assign(this.tableData[id], this.formFileds);
-        this.isShowEditDialog = false;
+        this.$refs.editForm.validate(isValid => {
 
-        // 考虑到可能编辑了日期-需要重新排序
-        // ***注意：手动排序传参和表格的default-sort属性格式不太一样
-        this.$refs.list.sort('date', 'descending');
+          if (!isValid) return;
 
-        this.$message.success('编辑成功');
+          // 保存编辑后的数据
+          Object.assign(this.tableData[id], this.formFileds);
+          this.isShowEditDialog = false;
+
+          // 考虑到可能编辑了日期-需要重新排序
+          // ***注意：手动排序传参和表格的default-sort属性格式不太一样
+          this.$refs.list.sort('date', 'descending');
+
+          this.$message.success('编辑成功');
+        });
       },
       rowDel(index, row, event) {
 
         // 让当前删除按钮失焦
         event.target.blur();
-        
+
         this.$confirm('确定要删除当前行吗？', '删除', {
           comfirmButtonText: '确定',
           cancelButtonText: '取消'

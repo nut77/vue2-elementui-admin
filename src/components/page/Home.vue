@@ -135,7 +135,7 @@
       },
       addNewTodoItem() {
 
-        this.$prompt('请输入待办事项主题', '', {
+        this.$prompt('请输入待办事项主题', '新增待办事项', {
           confirmButtonText: '确定',
           cancelButtonText: '取消'
         }).then(({value}) => {

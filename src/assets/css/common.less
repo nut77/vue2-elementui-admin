@@ -151,3 +151,33 @@
 .el-pager .number:last-child {
   margin-right: 0;
 }
+
+// 弹框相关样式优化 dialog、message-box
+.el-message-box {
+  border-width: 0 !important;
+  border-radius: 0 !important;
+}
+.el-dialog__header,
+.el-message-box__header {
+  padding: 10px !important;
+  background-color: @mainColor;
+  text-align: center;
+}
+.el-dialog__title,
+.el-message-box__title {
+  color: white !important;
+  font-size: 16px !important;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.el-dialog__headerbtn,
+.el-message-box__headerbtn {
+  top: 12px !important;
+}
+.el-dialog__close,
+.el-message-box__close {
+  color: white !important;
+}
+.el-dialog__body {
+  padding-bottom: 10px !important;
+}
