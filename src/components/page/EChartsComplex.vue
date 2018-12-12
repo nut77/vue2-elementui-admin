@@ -49,7 +49,11 @@
           title: {
             text: '今日&昨日',
             left: '50%',
-            textAlign: 'center'
+            textAlign: 'center',
+            top: 20,
+            textStyle: {
+              color: '#666'
+            }
           },
           tooltip: {
             trigger: 'axis',
@@ -68,14 +72,14 @@
           legend: {
             right: 20,
             orient: 'vertical',
-            data: ['今日','昨日']
+            data: ['今日', '昨日']
           },
           xAxis: {
             type: 'category',
             data: ['00:00','2:00','4:00','6:00','8:00','10:00','12:00','14:00','16:00','18:00','20:00',"22:00"],
             boundaryGap: false,
             splitLine: {
-              show: true,
+              show: false,
               interval: 'auto',
               lineStyle: {
                 color: ['#D4DFF5']
@@ -86,7 +90,7 @@
             },
             axisLine: {
               lineStyle: {
-                color: '#609ee9'
+                color: '#999'
               }
             },
             axisLabel: {
@@ -108,7 +112,7 @@
             },
             axisLine: {
               lineStyle: {
-                color: '#609ee9'
+                color: '#999'
               }
             },
             axisLabel: {
@@ -124,7 +128,7 @@
             smooth: true,
             showSymbol: false,
             symbol: 'circle',
-            symbolSize: 6,
+            symbolSize: 4,
             data: ['1200', '1400', '1008', '1411', '1026', '1288', '1300', '800', '1100', '1000', '1118', '1322'],
             areaStyle: {
               normal: {
@@ -139,12 +143,12 @@
             },
             itemStyle: {
               normal: {
-                color: '#f7b851'
+                color: 'rgba(154, 116, 179, 0.7)'
               }
             },
             lineStyle: {
               normal: {
-                width: 3
+                width: 2
               }
             }
           }, {
@@ -153,7 +157,7 @@
             smooth: true,
             showSymbol: false,
             symbol: 'circle',
-            symbolSize: 6,
+            symbolSize: 4,
             data: ['1200', '1400', '808', '811', '626', '488', '1600', '1100', '500', '300', '1998', '822'],
             areaStyle: {
               normal: {
@@ -168,12 +172,12 @@
             },
             itemStyle: {
               normal: {
-                color: '#58c8da'
+                color: 'rgba(126, 237, 238, 0.7)'
               }
             },
             lineStyle: {
               normal: {
-                width: 3
+                width: 2
               }
             }
           }]
@@ -377,6 +381,7 @@
           legend: {
             itemGap: 12,
             left: 20,
+            top: 30,
             orient: 'vertical',
             data:['01','02','03','04','05','06']
           },
@@ -385,7 +390,7 @@
               name:'Line 1',
               type:'pie',
               clockWise:false,
-              radius : [140, 160],
+              radius : [120, 140],
               itemStyle : dataStyle,
               hoverAnimation: false,
               data:[
@@ -405,7 +410,7 @@
               name:'Line 2',
               type:'pie',
               clockWise:false,
-              radius : [120, 140],
+              radius : [100, 120],
               itemStyle : dataStyle,
               hoverAnimation: false,
               data:[
@@ -425,7 +430,7 @@
               type:'pie',
               clockWise:false,
               hoverAnimation: false,
-              radius : [100, 120],
+              radius : [80, 100],
               itemStyle : dataStyle,
               data:[
                 {
@@ -444,7 +449,7 @@
               type:'pie',
               clockWise:false,
               hoverAnimation: false,
-              radius : [80, 100],
+              radius : [60, 80],
               itemStyle : dataStyle,
               data:[
                 {
@@ -463,7 +468,7 @@
               type:'pie',
               clockWise: false,
               hoverAnimation: false,
-              radius : [60, 80],
+              radius : [50, 60],
               itemStyle : dataStyle,
               data:[
                 {
@@ -489,7 +494,7 @@
           series: [{
             type: 'liquidFill',
             data: [0.6, 0.5, 0.4, 0.3],
-            radius: '80%'
+            radius: '75%'
           }]
         });
         return this;
