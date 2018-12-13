@@ -46,15 +46,10 @@ export default {
   methods: {
     drawPie() {
       this.$axios.get("/chart-simple/pie").then(res => {
+
+        let title = "中文名使用TOP5";
         this.chartPie.setOption({
-          title: {
-            text: "中文名使用TOP5",
-            left: "center",
-            top: 20,
-            textStyle: {
-              color: "#666"
-            }
-          },
+          title: Object.assign({}, Util.defaultEchartsOpt.title, {text: title}),
           tooltip: {
             trigger: "item",
             formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -62,7 +57,7 @@ export default {
           color: ["#af84cb", "#3acaa9", "#ebcc6f", "#67c4ed", "rgba(32, 254, 255, 0.5)"],
           series: [
             {
-              name: "中文名使用TOP5",
+              name: title,
               type: "pie",
               radius: "55%",
               center: ["50%", "50%"],
@@ -104,15 +99,10 @@ export default {
     },
     drawLine() {
       this.$axios.get("/chart-simple/line").then(res => {
+
+        let title = "用户周活跃度";
         this.chartLine.setOption({
-          title: {
-            text: "用户周活跃度",
-            left: "center",
-            top: 20,
-            textStyle: {
-              color: "#666"
-            }
-          },
+          title: Object.assign({}, Util.defaultEchartsOpt.title, {text: title}),
           tooltip: {
             trigger: "axis",
             formatter: "{a} <br/>{b} : {c}"
@@ -164,7 +154,7 @@ export default {
           },
           series: [
             {
-              name: "用户周活跃度",
+              name: title,
               data: res.data.yData,
               type: "line",
               smooth: true,
@@ -200,15 +190,10 @@ export default {
     },
     drawBar() {
       this.$axios.get("/chart-simple/bar").then(res => {
+
+        let title = "商品日销量";
         this.chartBar.setOption({
-          title: {
-            text: "商品日销量",
-            left: "center",
-            top: 20,
-            textStyle: {
-              color: "#666"
-            }
-          },
+          title: Object.assign({}, Util.defaultEchartsOpt.title, {text: title}),
           tooltip: {
             trigger: "item",
             formatter: "{a} <br/>{b} : {c}"
@@ -252,7 +237,7 @@ export default {
           },
           series: [
             {
-              name: "商品日销量",
+              name: title,
               data: res.data.yData,
               type: "bar",
               symbol: "triangle",
@@ -292,18 +277,13 @@ export default {
       return this;
     },
     drawGauge() {
+
+      let title = "平均速度(km/h)";
       let option = {
-        title: {
-          text: "平均速度(km/h)",
-          left: "center",
-          top: 20,
-          textStyle: {
-            color: "#666"
-          }
-        },
+        title: Object.assign({}, Util.defaultEchartsOpt.title, {text: title}),
         series : [
             {
-              name: '平均速度(km/h)',
+              name: title,
               type: 'gauge',
               center : ['50%', '60%'],
               min: 0,
@@ -393,15 +373,10 @@ export default {
     },
     drawRadar() {
       this.$axios.get("/chart-simple/radar").then(res => {
+
+        let title = "部门预算支出比";
         this.chartRadar.setOption({
-          title: {
-            text: "部门预算支出比",
-            left: "center",
-            top: 20,
-            textStyle: {
-              color: "#666"
-            }
-          },
+          title: Object.assign({}, Util.defaultEchartsOpt.title, {text: title}),
           tooltip: {},
           radar: {
             name: {
@@ -475,6 +450,7 @@ export default {
       return this;
     },
     resizeChart() {
+
       window.addEventListener("resize", () => {
         this.chartPie.resize();
         this.chartLine.resize();
@@ -485,20 +461,8 @@ export default {
     }
   },
   mounted() {
-    this.drawPie()
-      .drawLine()
-      .drawBar()
-      .drawGauge()
-      .drawRadar()
-      .resizeChart();
-  },
-  updated() {
-    this.drawPie()
-      .drawLine()
-      .drawBar()
-      .drawGauge()
-      .drawRadar()
-      .resizeChart();
+
+    this.drawPie().drawLine().drawBar().drawGauge().drawRadar().resizeChart();
   }
 };
 </script>

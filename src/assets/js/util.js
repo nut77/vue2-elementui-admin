@@ -19,8 +19,21 @@ function getDom(selector, type = 'id') {
   return getDomBy[type](selector);
 }
 
+// echarts的title样式
+const defaultEchartsOpt = {
+  title: {
+    text: "",
+    left: "center",
+    top: 20,
+    textStyle: {
+      color: "#666"
+    }
+  }
+}
+
 export default {
-  getDom
+  getDom,
+  defaultEchartsOpt
 }
 
 /**

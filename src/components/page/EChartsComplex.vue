@@ -45,15 +45,15 @@
     methods: {
       drawLine1() {
 
+        let title = "今日和昨日访问量";
         let option = {
-          title: {
-            text: '今日&昨日',
-            left: '50%',
-            textAlign: 'center',
-            top: 20,
-            textStyle: {
-              color: '#666'
-            }
+          title: Object.assign({}, Util.defaultEchartsOpt.title, {text: title}),
+          grid: {
+            top: 60,
+            left: 60,
+            right: 80,
+            bottom: 20,
+            containLabel: true
           },
           tooltip: {
             trigger: 'axis',
@@ -65,14 +65,17 @@
             backgroundColor: 'rgba(255,255,255,1)',
             padding: [5, 10],
             textStyle: {
-              color: '#7588E4',
+              color: '#999',
             },
             extraCssText: 'box-shadow: 0 0 5px rgba(0,0,0,0.3)'
           },
           legend: {
+            top: 15,
             right: 20,
             orient: 'vertical',
-            data: ['今日', '昨日']
+            textStyle: {
+              color: "#666"
+            }
           },
           xAxis: {
             type: 'category',
@@ -205,13 +208,12 @@
           }
 
           let option = {
-            backgroundColor: "transparent",
-            title: '',
+            title: Object.assign({}, Util.defaultEchartsOpt.title, {text: "训练月统计"}),
             grid: {
-              top: 35,
+              top: 45,
               left: 20,
               right: 20,
-              bottom: 20,
+              bottom: 0,
               containLabel: true
             },
             tooltip: {
@@ -353,136 +355,78 @@
       },
       drawPie() {
 
-        var dataStyle = {
+        let dataStyle = {
           normal: {
-            label: {show:false},
-            labelLine: {show:false},
+            label: {
+              show: false
+            },
+            labelLine: {
+              show: false
+            },
             shadowBlur: 40,
-            shadowColor: 'rgba(40, 40, 40, 0.5)',
+            shadowColor: 'rgba(40, 40, 40, 0.5)'
           }
         };
-        var placeHolderStyle = {
-          normal : {
+        let placeHolderStyle = {
+          normal: {
             color: 'rgba(0,0,0,0)',
-            label: {show:false},
-            labelLine: {show:false}
+            label: {
+              show: false
+            },
+            labelLine: {
+              show: false
+            }
           },
-          emphasis : {
+          emphasis: {
             color: 'rgba(0,0,0,0)'
           }
         };
+        // 5个圆环的样式
+        let series = [];
+        let colors = ['#85b6b2', '#6d4f8d','#cd5e7e', '#e38980','#f7db88'];
+        for (let i = 0; i < 5; i++) {
+
+          series.push({
+            name: `产品${i + 1}`,
+            type: 'pie',
+            clockWise: false,
+            center: ["50%", "56%"],
+            radius: [110 - i * 20, 130 - i * 20],
+            itemStyle: dataStyle,
+            hoverAnimation: false,
+            data: [
+              {
+                value: (Math.random() * 100).toFixed(2),
+                name: `产品${i + 1}`,
+                itemStyle: {
+                  color: colors[i]
+                }
+              },
+              {
+                value: (Math.random() * 100).toFixed(2),
+                name:'',
+                itemStyle : placeHolderStyle
+              }
+            ]
+          });
+        }
+
         let option = {
-          //backgroundColor: '#f4f2e3',
-          color: ['#85b6b2', '#6d4f8d','#cd5e7e', '#e38980','#f7db88'],
+          title: Object.assign({}, Util.defaultEchartsOpt.title, {text: "多产品完成度"}),
           tooltip : {
             show: true,
-            formatter: "{a} <br/>{b} : {c} ({d}%)"
+            formatter: "{a} <br/>完成度 : {d}%"
           },
+          color: colors,
           legend: {
             itemGap: 12,
             left: 20,
-            top: 30,
-            orient: 'vertical',
-            data:['01','02','03','04','05','06']
+            top: 50,
+            textStyle: {
+              color: "#666"
+            }
           },
-          series : [
-            {
-              name:'Line 1',
-              type:'pie',
-              clockWise:false,
-              radius : [120, 140],
-              itemStyle : dataStyle,
-              hoverAnimation: false,
-              data:[
-                {
-                  value:300,
-                  name:'01'
-                },
-                {
-                  value:50,
-                  name:'invisible',
-                  itemStyle : placeHolderStyle
-                }
-
-              ]
-            },
-            {
-              name:'Line 2',
-              type:'pie',
-              clockWise:false,
-              radius : [100, 120],
-              itemStyle : dataStyle,
-              hoverAnimation: false,
-              data:[
-                {
-                  value:150,
-                  name:'02'
-                },
-                {
-                  value:60,
-                  name:'invisible',
-                  itemStyle : placeHolderStyle
-                }
-              ]
-            },
-            {
-              name:'Line 3',
-              type:'pie',
-              clockWise:false,
-              hoverAnimation: false,
-              radius : [80, 100],
-              itemStyle : dataStyle,
-              data:[
-                {
-                  value:80,
-                  name:'03'
-                },
-                {
-                  value:50,
-                  name:'invisible',
-                  itemStyle : placeHolderStyle
-                }
-              ]
-            },
-            {
-              name:'Line 4',
-              type:'pie',
-              clockWise:false,
-              hoverAnimation: false,
-              radius : [60, 80],
-              itemStyle : dataStyle,
-              data:[
-                {
-                  value:45,
-                  name:'04'
-                },
-                {
-                  value:30,
-                  name:'invisible',
-                  itemStyle : placeHolderStyle
-                }
-              ]
-            },
-            {
-              name:'Line 5',
-              type:'pie',
-              clockWise: false,
-              hoverAnimation: false,
-              radius : [50, 60],
-              itemStyle : dataStyle,
-              data:[
-                {
-                  value:30,
-                  name:'05'
-                },
-                {
-                  value:30,
-                  name:'invisible',
-                  itemStyle : placeHolderStyle
-                }
-              ]
-            },
-          ]
+          series
         };
 
         this.chartPie.setOption(option);
@@ -490,11 +434,14 @@
       },
       drawLiquid() {
 
+        let rate = Math.random().toFixed(2);
         this.chartLiquid.setOption({
+          title: Object.assign({}, Util.defaultEchartsOpt.title, {text: "项目总完成度"}),
           series: [{
             type: 'liquidFill',
-            data: [0.6, 0.5, 0.4, 0.3],
-            radius: '75%'
+            data: [rate > 0.6 ? rate : 0.6, 0.5, 0.4, 0.3],
+            radius: "70%",
+            center: ["50%", "55%"],
           }]
         });
         return this;

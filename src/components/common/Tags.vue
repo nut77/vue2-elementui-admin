@@ -79,12 +79,6 @@
           name: route.matched[1].components.default.name
         });
         Bus.$emit('tags', this.tagList);
-
-        // 如果切换的tag标签式图表-那么设置window.resize()
-        if (/chart/.test(route.path)) {
-
-          document.getElementsByClassName("main")[0] = 0;
-        }
       },
       handleTag(command) {
 
