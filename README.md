@@ -11,11 +11,11 @@ cd vue2-elementui-admin
 npm install
 run dev
 ```
-然后访问```localhost:8080```即可进入欢迎页面，点击开始测试按钮即可开始菲尔人格测验。
+然后访问```localhost:8080```即可进入登录页面（用户名：admin  密码：Admin2018）。
+项目[线上地址](http://www.sunnynut.xyz:8080/mas/#/login)
 # 部分截图
 #### 登录
 ![img1](https://raw.githubusercontent.com/nut77/vue2-elementui-admin/1.0.0/screenshots/1.png)
-用户名：admin  密码：Admin2018
 #### 首页
 ![img2](https://raw.githubusercontent.com/nut77/vue2-elementui-admin/1.0.0/screenshots/2.png)
 
