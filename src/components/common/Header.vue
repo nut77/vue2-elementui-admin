@@ -26,7 +26,7 @@
           <i class="el-icon-caret-bottom"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
-          <a href="https://github.com/nut77/vue2-elemntui-admin" target="_blank">
+          <a href="https://github.com/nut77/vue2-elementui-admin" target="_blank">
             <el-dropdown-item>项目仓库</el-dropdown-item>
           </a>
           <el-dropdown-item divided command="loginout">退出登录</el-dropdown-item>
