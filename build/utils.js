@@ -47,7 +47,8 @@ exports.cssLoaders = function (options) {
     if (options.extract) {
       return ExtractTextPlugin.extract({
         use: loaders,
-        fallback: 'vue-style-loader'
+        fallback: 'vue-style-loader',
+        publicPath: '../../' // 用来解决css中引入的图片资源路径加载不对的问题
       })
     } else {
       return ['vue-style-loader'].concat(loaders)
@@ -63,7 +64,7 @@ exports.cssLoaders = function (options) {
         loader: 'sass-resources-loader',
         options: {
           resources: [
-            path.resolve(__dirname, '../../src/assets/css/variable.less')
+            path.resolve(__dirname, '../src/assets/css/variable.less')
           ]
         }
       }
