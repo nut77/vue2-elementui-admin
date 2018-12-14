@@ -9,7 +9,7 @@ less es6 vue2 vuex vue-router element-ui webpack
 git clone 项目地址
 cd vue2-elementui-admin
 npm install
-run dev
+npm run dev
 ```
 然后访问```localhost:8080```即可进入登录页面（用户名：admin  密码：Admin2018）。
 项目[线上地址](http://www.sunnynut.xyz:8080/mas/#/login)
