@@ -38,7 +38,7 @@
     border: 0;
     box-shadow: none !important;
     background-color: transparent;
-    color: white;
+    color: white !important;
     font-size: 18px;
   }
   .btn-return {
