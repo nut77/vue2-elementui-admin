@@ -47,7 +47,8 @@ exports.cssLoaders = function (options) {
     if (options.extract) {
       return ExtractTextPlugin.extract({
         use: loaders,
-        fallback: 'vue-style-loader'
+        fallback: 'vue-style-loader',
+        publicPath: '../../' // 解决在build生产环境时，css文件中引用的图片路径不对的问题。路径是相对static的
       })
     } else {
       return ['vue-style-loader'].concat(loaders)
