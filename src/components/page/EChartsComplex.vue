@@ -43,7 +43,8 @@
       },
     },
     methods: {
-      drawLine1() {
+      drawLine1()
+      {
 
         let title = "今日和昨日访问量";
         let option = {
